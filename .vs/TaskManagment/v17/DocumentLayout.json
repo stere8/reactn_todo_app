@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{71B13B3B-F223-45EE-82B9-B57F75D870CA}|taskmanagment.client\\taskmanagment.client.esproj|c:\\users\\twizo\\documents\\reactn_todo_app\\taskmanagment.client\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{71B13B3B-F223-45EE-82B9-B57F75D870CA}|taskmanagment.client\\taskmanagment.client.esproj|solutionrelative:taskmanagment.client\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{918E245D-2DB7-420C-8A60-EDCB51F1DFAF}|TaskManagment.Server\\TaskManagment.Server.csproj|c:\\users\\twizo\\documents\\reactn_todo_app\\taskmanagment.server\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{918E245D-2DB7-420C-8A60-EDCB51F1DFAF}|TaskManagment.Server\\TaskManagment.Server.csproj|solutionrelative:taskmanagment.server\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -65,11 +69,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "package.json",
+              "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\taskmanagment.client\\package.json",
+              "RelativeDocumentMoniker": "taskmanagment.client\\package.json",
+              "ToolTip": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\taskmanagment.client\\package.json",
+              "RelativeToolTip": "taskmanagment.client\\package.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAwwA8AAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-23T15:44:42.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "assert.d.ts",
               "DocumentMoniker": "C:\\Users\\twizo\\AppData\\Local\\Microsoft\\TypeScript\\5.2\\node_modules\\@types\\node\\assert.d.ts",
               "RelativeDocumentMoniker": "..\\..\\AppData\\Local\\Microsoft\\TypeScript\\5.2\\node_modules\\@types\\node\\assert.d.ts",
@@ -82,7 +99,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "index.css",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\taskmanagment.client\\src\\index.css",
               "RelativeDocumentMoniker": "taskmanagment.client\\src\\index.css",
@@ -95,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "App.css",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\taskmanagment.client\\src\\App.css",
               "RelativeDocumentMoniker": "taskmanagment.client\\src\\App.css",
@@ -108,7 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "App.jsx",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\taskmanagment.client\\src\\App.jsx",
               "RelativeDocumentMoniker": "taskmanagment.client\\src\\App.jsx",
@@ -121,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "LoginUserDto.cs",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\TaskManagment.Server\\DTOs\\LoginUserDto.cs",
               "RelativeDocumentMoniker": "TaskManagment.Server\\DTOs\\LoginUserDto.cs",
@@ -134,7 +151,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "RegisterUserDto.cs",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\TaskManagment.Server\\DTOs\\RegisterUserDto.cs",
               "RelativeDocumentMoniker": "TaskManagment.Server\\DTOs\\RegisterUserDto.cs",
@@ -147,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "TaskManagmentServerContext.cs",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\TaskManagment.Server\\Data\\TaskManagmentServerContext.cs",
               "RelativeDocumentMoniker": "TaskManagment.Server\\Data\\TaskManagmentServerContext.cs",
@@ -180,7 +197,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\TaskManagment.Server\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "TaskManagment.Server\\Controllers\\UsersController.cs",
@@ -193,7 +210,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "TasksController.cs",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\TaskManagment.Server\\Controllers\\TasksController.cs",
               "RelativeDocumentMoniker": "TaskManagment.Server\\Controllers\\TasksController.cs",
@@ -206,7 +223,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "TaskManagment.Server",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\TaskManagment.Server\\TaskManagment.Server.csproj",
               "RelativeDocumentMoniker": "TaskManagment.Server\\TaskManagment.Server.csproj",
@@ -219,7 +236,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\TaskManagment.Server\\Program.cs",
               "RelativeDocumentMoniker": "TaskManagment.Server\\Program.cs",
@@ -232,7 +249,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\TaskManagment.Server\\Models\\User.cs",
               "RelativeDocumentMoniker": "TaskManagment.Server\\Models\\User.cs",
@@ -245,7 +262,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Task.cs",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\TaskManagment.Server\\Models\\Task.cs",
               "RelativeDocumentMoniker": "TaskManagment.Server\\Models\\Task.cs",
@@ -258,7 +275,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app\\TaskManagment.Server\\appsettings.json",
               "RelativeDocumentMoniker": "TaskManagment.Server\\appsettings.json",
