@@ -268,3 +268,4 @@ C:\Users\twizo\Documents\reactn_todo_app\TaskManagment.Server\obj\Debug\net8.0\r
 C:\Users\twizo\Documents\reactn_todo_app\TaskManagment.Server\obj\Debug\net8.0\TaskManagment.Server.pdb
 C:\Users\twizo\Documents\reactn_todo_app\TaskManagment.Server\obj\Debug\net8.0\TaskManagment.Server.genruntimeconfig.cache
 C:\Users\twizo\Documents\reactn_todo_app\TaskManagment.Server\obj\Debug\net8.0\ref\TaskManagment.Server.dll
+C:\Users\twizo\Documents\reactn_todo_app\TaskManagment.Server\bin\Debug\net8.0\BCrypt.Net.dll
