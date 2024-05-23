@@ -1,0 +1,1 @@
+C:\Users\twizo\Documents\reactn_todo_app\taskmanagment.client\obj\Debug\taskmanagment.client.esproj.CoreCompileInputs.cache
