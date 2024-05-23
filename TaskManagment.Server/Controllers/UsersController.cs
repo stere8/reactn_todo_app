@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskManagment.Server.Data;
+using TaskManagment.Server.DTOs;
 using TaskManagment.Server.Models;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace TaskManagment.Server.Controllers
 {
@@ -25,14 +24,14 @@ namespace TaskManagment.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
-            return await _context.User.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-            var user = await _context.User.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
 
             if (user == null)
             {
@@ -43,7 +42,6 @@ namespace TaskManagment.Server.Controllers
         }
 
         // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
@@ -74,11 +72,10 @@ namespace TaskManagment.Server.Controllers
         }
 
         // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.User.Add(user);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
@@ -88,21 +85,64 @@ namespace TaskManagment.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var user = await _context.User.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            _context.User.Remove(user);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
+        // User Registration
+        [HttpPost("register")]
+        public async Task<ActionResult<User>> RegisterUser(RegisterUserDto registerUserDto)
+        {
+            CreatePasswordHash(registerUserDto.Password, out string passwordHash);
+
+            var user = new User
+            {
+                Username = registerUserDto.Username,
+                Email = registerUserDto.Email,
+                PasswordHash = passwordHash
+            };
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+        }
+
+        // User Login
+        [HttpPost("login")]
+        public async Task<ActionResult<User>> LoginUser(LoginUserDto loginUserDto)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == loginUserDto.Username);
+
+            if (user == null || !VerifyPassword(loginUserDto.Password, user.PasswordHash))
+            {
+                return Unauthorized("Invalid username or password.");
+            }
+
+            return Ok(user);
+        }
+
         private bool UserExists(int id)
         {
-            return _context.User.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.Id == id);
+        }
+
+        public static void CreatePasswordHash(string password, out string passwordHash)
+        {
+            passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
+        }
+
+        public static bool VerifyPassword(string password, string storedHash)
+        {
+            return BCrypt.Net.BCrypt.Verify(password, storedHash);
         }
     }
 }

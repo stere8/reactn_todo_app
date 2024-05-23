@@ -20,10 +20,6 @@ namespace TaskManagment.Server.Models
         [StringLength(64)]  // Assuming a fixed-length hashed password
         public string PasswordHash { get; set; }
 
-        [Required]
-        [StringLength(24)]  // Assuming a fixed-length salt
-        public string Salt { get; set; }
-
         public List<Task> Tasks { get; set; } // Navigation property for tasks owned by the user
     }
 

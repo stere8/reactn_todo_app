@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TaskManagment.Server.Models;
+using Task = TaskManagment.Server.Models.Task;
 
 namespace TaskManagment.Server.Data
 {
@@ -14,6 +15,7 @@ namespace TaskManagment.Server.Data
         {
         }
 
-        public DbSet<TaskManagment.Server.Models.User> User { get; set; } = default!;
+        public DbSet<Task> Tasks { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
