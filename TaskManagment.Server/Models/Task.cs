@@ -17,8 +17,6 @@ namespace TaskManagment.Server.Models
         public bool Completed { get; set; } = false;  // Default value set in the constructor
 
         public int UserId { get; set; }
-
-        public User User { get; set; } // Navigation property for user relationship
     }
 
 }
