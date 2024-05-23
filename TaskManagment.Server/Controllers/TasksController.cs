@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TaskManagment.Server.Data;
 using TaskManagment.Server.Models;
 
 namespace TaskManagment.Server.Controllers
@@ -13,9 +14,9 @@ namespace TaskManagment.Server.Controllers
     [ApiController]
     public class TasksController : ControllerBase
     {
-        private readonly TaskManagmentDbContext _context;
+        private readonly TaskManagmentServerContext _context;
 
-        public TasksController(TaskManagmentDbContext context)
+        public TasksController(TaskManagmentServerContext context)
         {
             _context = context;
         }
