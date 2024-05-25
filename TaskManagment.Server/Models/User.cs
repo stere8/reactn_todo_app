@@ -8,7 +8,7 @@ namespace TaskManagment.Server.Models
 
         [Required]
         [StringLength(255)]
-        [ServiceStack.DataAnnotations.Unique] // Specify data annotation for unique constraint
+        [ServiceStack.DataAnnotations.UniqueAttribute] // Specify data annotation for unique constraint
         public string Username { get; set; }
 
         [Required]

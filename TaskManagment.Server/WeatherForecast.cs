@@ -1,4 +1,4 @@
-namespace TaskManagment.Server
+namespace taskmanagment.server
 {
     public class WeatherForecast
     {
