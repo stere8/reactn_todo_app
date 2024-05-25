@@ -6,9 +6,12 @@ import UserList from './components/UsersList';
 function App() {
   return (
     <div className="App">
-      <nav>df</nav>
-      <UserList/>
-      <TaskList/>
+       <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/tasks" element={<TaskList />} />
+          <Route path="/users" element={<UserList />} />
+        </Routes>
 
     </div>
   );
