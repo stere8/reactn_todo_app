@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Table } from 'react-bootstrap'; // Import Table component from Bootstrap
+import { Table } from "react-bootstrap"; // Import Table component from Bootstrap
 
-function TaskList() {
-  const [taskList, setTaskList] = useState([]);
+const userList = [
+  {
+    id: 0,
+    username: "unknown",
+    email: "unknown@unknown",
+    passwordHash: "string",
+    tasks: null,
+  },
+];
+
+function UserList() {
   const [userList, setUserList] = useState([]);
+  const [taskList, setTaskList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -34,33 +44,25 @@ function TaskList() {
   return (
     <div>
       {loading ? (
-        <p>Loading tasks...</p>
+        <p>Loading users...</p>
       ) : error ? (
-        <p>Error fetching tasks: {error}</p>
+        <p>Error fetching users: {error}</p>
       ) : (
-        <Table striped bordered hover variant="dark">
-        <thead>
+        <Table striped="columns">
+          <thead class="thead-dark">
             <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Due Date</th>
-              <th>Completed</th>
-              <th>User</th>
+              <th scope="col">Username</th>
+              <th scope="col">Email</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {taskList.map((task) => (
-              <tr key={task.id}>
-                <td>{task.title}</td>
-                <td>{task.description}</td>
+            {userList.map((user) => (
+              <tr key={user.id}>
+                <td scope="row">{user.username}</td>
+                <td>{user.email}</td>
                 <td>
-                  {task.dueDate
-                    ? new Date(task.dueDate).toLocaleDateString()
-                    : "No Due date"}
-                </td>
-                <td>{task.completed ? "Yes" : "No"}</td>
-                <td>
-                  {userList.find((user) => user.id === task.userId).username}
+                  <button className="btn btn-primary btn-sm">View Tasks</button>
                 </td>
               </tr>
             ))}
@@ -71,4 +73,4 @@ function TaskList() {
   );
 }
 
-export default TaskList;
+export default UserList;

@@ -1,11 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using TaskManagment.Server.Data;
 using TaskManagment.Server.DTOs;
 using TaskManagment.Server.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Http.Json;
+using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace TaskManagment.Server.Controllers
 {
@@ -14,52 +19,92 @@ namespace TaskManagment.Server.Controllers
     public class UsersController : ControllerBase
     {
         private readonly TaskManagmentServerContext _context;
+        private readonly ILogger<UsersController> _logger;
 
-        public UsersController(TaskManagmentServerContext context)
+        public UsersController(TaskManagmentServerContext context, ILogger<UsersController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
-        // GET: api/Users - Retrieves a list of all users.
+        // GET: api/Users
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
-            return await _context.Users.ToListAsync();
+            try
+            {
+                _logger.LogInformation("Retrieving all users...");
+                var users = await _context.Users.ToListAsync();
+                foreach (User user in users)
+                {
+                    if (_context.Tasks.Any(tasks => tasks.UserId == user.Id))
+                    {
+                        var foundTasks = _context.Tasks.Where(tasks => tasks.UserId == user.Id).ToList();
+                        user.Tasks = foundTasks;
+                    }
+                }
+                _logger.LogInformation("Successfully retrieved all users.");
+
+                return users;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to retrieve all users.");
+                return StatusCode(500, "An error occurred while retrieving all users.");
+            }
         }
 
-        // GET: api/Users/{id} - Retrieves a specific user by ID.
+        // GET: api/Users/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-
-            if (user == null)
+            try
             {
-                return NotFound();
-            }
+                _logger.LogInformation("Retrieving user with ID {UserId}...", id);
+                var user = await _context.Users.FindAsync(id);
 
-            return user;
+                if (user == null)
+                {
+                    _logger.LogWarning("User with ID {UserId} not found.", id);
+                    return NotFound();
+                }
+
+                _logger.LogInformation("Successfully retrieved user with ID {UserId}.", id);
+                return user;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to retrieve user with ID {UserId}.", id);
+                return StatusCode(500, "An error occurred while retrieving user.");
+            }
         }
 
-        // PUT: api/Users/{id} - Updates a specific user's information.
+        // PUT: api/Users/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
             try
             {
+                _logger.LogInformation("Updating user with ID {UserId}...", id);
+
+                if (id != user.Id)
+                {
+                    _logger.LogWarning("Invalid request: Provided ID ({ProvidedId}) does not match user ID.", id);
+                    return BadRequest("Invalid ID provided.");
+                }
+
+                _context.Entry(user).State = EntityState.Modified;
+
                 await _context.SaveChangesAsync();
+
+                _logger.LogInformation("User with ID {UserId} updated successfully.", id);
+                return NoContent();
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!UserExists(id))
                 {
+                    _logger.LogWarning("User with ID {UserId} not found.", id);
                     return NotFound();
                 }
                 else
@@ -67,91 +112,111 @@ namespace TaskManagment.Server.Controllers
                     throw;
                 }
             }
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while updating user with ID {UserId}.", id);
+                return StatusCode(500, "An error occurred while updating user.");
+            }
         }
 
-        // POST: api/Users - Creates a new user (could be used for admin-level user creation).
+        // POST: api/Users
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _logger.LogInformation("Creating a new user...");
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+
+                _logger.LogInformation("User created successfully.");
+                return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while creating the user.");
+                return StatusCode(500, "An error occurred while creating user.");
+            }
         }
 
-        // DELETE: api/Users/{id} - Deletes a specific user by ID.
+        // DELETE: api/Users/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            try
             {
-                return NotFound();
+                _logger.LogInformation("Deleting user with ID {UserId}...", id);
+
+                var user = await _context.Users.FindAsync(id);
+                if (user == null)
+                {
+                    _logger.LogWarning("User with ID {UserId} not found.", id);
+                    return NotFound();
+                }
+
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+
+                _logger.LogInformation("User with ID {UserId} deleted successfully.", id);
+                return NoContent();
             }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while deleting user with ID {UserId}.", id);
+                return StatusCode(500, "An error occurred while deleting user.");
+            }
         }
 
-        // POST: api/Users/register - Registers a new user (user self-registration).
+        // POST: api/Users/register
         [HttpPost("register")]
         public async Task<ActionResult<User>> RegisterUser(RegisterUserDto registerUserDto)
         {
             try
             {
-                if (await _context.Users.AnyAsync(u => u.Username == registerUserDto.Username))
-                {
-                    return BadRequest("Username is already taken.");
-                }
+                _logger.LogInformation("Registering a new user...");
+                CreatePasswordHash(registerUserDto.Password, out string hashPasword);
 
-                if (await _context.Users.AnyAsync(u => u.Email == registerUserDto.Email))
-                {
-                    return BadRequest("Email is already taken.");
-                }
 
-                CreatePasswordHash(registerUserDto.Password, out string passwordHash);
-
-                var user = new User
+                var user = await _context.Users.AddAsync(new User()
                 {
                     Username = registerUserDto.Username,
                     Email = registerUserDto.Email,
-                    PasswordHash = passwordHash
-                };
+                    PasswordHash = hashPasword
+                });
 
-                _context.Users.Add(user);
-                await _context.SaveChangesAsync();
-
-                return CreatedAtAction("GetUser", new { id = user.Id }, user);
+                _logger.LogInformation($"User registered successfully.{user.Entity.Username}, {registerUserDto.Password}");
+                return CreatedAtAction("GetUser", new { id = user.Entity.Id }, user);
             }
             catch (Exception ex)
             {
-                // Log the exception (ex) here as needed
-                return StatusCode(500, "An error occurred while registering the user.");
+                _logger.LogError(ex, "An error occurred while registering the user.");
+                return StatusCode(500, "An error occurred while registering user.");
             }
         }
 
-        // POST: api/Users/login - Authenticates a user (user login).
+        // POST: api/Users/login
         [HttpPost("login")]
         public async Task<ActionResult<User>> LoginUser(LoginUserDto loginUserDto)
         {
             try
             {
+                _logger.LogInformation("Logging in user {Username}...", loginUserDto.Username);
+
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == loginUserDto.Username);
 
                 if (user == null || !VerifyPassword(loginUserDto.Password, user.PasswordHash))
                 {
+                    _logger.LogWarning("Failed login attempt for user {Username}. Invalid username or password.", loginUserDto.Username);
                     return Unauthorized("Invalid username or password.");
                 }
 
+                _logger.LogInformation("User {Username} logged in successfully.", loginUserDto.Username);
                 return Ok(user);
             }
             catch (Exception ex)
             {
-                // Log the exception (ex) here as needed
+                _logger.LogError(ex, "An error occurred while logging in user {Username}.", loginUserDto.Username);
                 return StatusCode(500, "An error occurred while logging in.");
             }
         }
