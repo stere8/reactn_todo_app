@@ -20,14 +20,14 @@ namespace TaskManagment.Server.Controllers
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/Users - Retrieves a list of all users.
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
             return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/Users/{id} - Retrieves a specific user by ID.
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
@@ -41,7 +41,7 @@ namespace TaskManagment.Server.Controllers
             return user;
         }
 
-        // PUT: api/Users/5
+        // PUT: api/Users/{id} - Updates a specific user's information.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
@@ -71,7 +71,7 @@ namespace TaskManagment.Server.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/Users - Creates a new user (could be used for admin-level user creation).
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
@@ -81,7 +81,7 @@ namespace TaskManagment.Server.Controllers
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/Users/{id} - Deletes a specific user by ID.
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
@@ -97,37 +97,63 @@ namespace TaskManagment.Server.Controllers
             return NoContent();
         }
 
-        // User Registration
+        // POST: api/Users/register - Registers a new user (user self-registration).
         [HttpPost("register")]
         public async Task<ActionResult<User>> RegisterUser(RegisterUserDto registerUserDto)
         {
-            CreatePasswordHash(registerUserDto.Password, out string passwordHash);
-
-            var user = new User
+            try
             {
-                Username = registerUserDto.Username,
-                Email = registerUserDto.Email,
-                PasswordHash = passwordHash
-            };
+                if (await _context.Users.AnyAsync(u => u.Username == registerUserDto.Username))
+                {
+                    return BadRequest("Username is already taken.");
+                }
 
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+                if (await _context.Users.AnyAsync(u => u.Email == registerUserDto.Email))
+                {
+                    return BadRequest("Email is already taken.");
+                }
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+                CreatePasswordHash(registerUserDto.Password, out string passwordHash);
+
+                var user = new User
+                {
+                    Username = registerUserDto.Username,
+                    Email = registerUserDto.Email,
+                    PasswordHash = passwordHash
+                };
+
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ex) here as needed
+                return StatusCode(500, "An error occurred while registering the user.");
+            }
         }
 
-        // User Login
+        // POST: api/Users/login - Authenticates a user (user login).
         [HttpPost("login")]
         public async Task<ActionResult<User>> LoginUser(LoginUserDto loginUserDto)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == loginUserDto.Username);
-
-            if (user == null || !VerifyPassword(loginUserDto.Password, user.PasswordHash))
+            try
             {
-                return Unauthorized("Invalid username or password.");
-            }
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == loginUserDto.Username);
 
-            return Ok(user);
+                if (user == null || !VerifyPassword(loginUserDto.Password, user.PasswordHash))
+                {
+                    return Unauthorized("Invalid username or password.");
+                }
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ex) here as needed
+                return StatusCode(500, "An error occurred while logging in.");
+            }
         }
 
         private bool UserExists(int id)

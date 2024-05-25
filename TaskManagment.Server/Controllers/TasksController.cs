@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskManagment.Server.Data;
+using TaskManagment.Server.DTOs;
 using TaskManagment.Server.Models;
 
 namespace TaskManagment.Server.Controllers
@@ -23,14 +22,14 @@ namespace TaskManagment.Server.Controllers
 
         // GET: api/Tasks
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TaskManagment.Server.Models.Task>>> GetTasks()
+        public async Task<ActionResult<IEnumerable<Models.Task>>> GetTasks()
         {
             return await _context.Tasks.ToListAsync();
         }
 
         // GET: api/Tasks/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TaskManagment.Server.Models.Task>> GetTask(int id)
+        public async Task<ActionResult<Models.Task>> GetTask(int id)
         {
             var task = await _context.Tasks.FindAsync(id);
 
@@ -43,9 +42,8 @@ namespace TaskManagment.Server.Controllers
         }
 
         // PUT: api/Tasks/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTask(int id, TaskManagment.Server.Models.Task task)
+        public async Task<IActionResult> PutTask(int id, Models.Task task)
         {
             if (id != task.Id)
             {
@@ -74,13 +72,24 @@ namespace TaskManagment.Server.Controllers
         }
 
         // POST: api/Tasks
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TaskManagment.Server.Models.Task>> PostTask(TaskManagment.Server.Models.Task task)
+        public async Task<ActionResult<Models.Task>> PostTask(AddTaskDto addTaskDto)
         {
+            // Map the DTO to the Task model
+            var task = new Models.Task
+            {
+                Title = addTaskDto.Title,
+                Description = addTaskDto.Description,
+                DueDate = addTaskDto.DueDate,
+                Completed = addTaskDto.Completed,
+                UserId = addTaskDto.UserId
+            };
+
+            // Add the task to the context and save changes
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
 
+            // Return the created task with the generated ID
             return CreatedAtAction("GetTask", new { id = task.Id }, task);
         }
 
