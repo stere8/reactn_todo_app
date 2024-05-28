@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table } from 'react-bootstrap'; // Import Table component from Bootstrap
 
-function TaskList() {
+function TaskList(filters) {
   const [taskList, setTaskList] = useState([]);
   const [userList, setUserList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -49,7 +49,7 @@ function TaskList() {
             </tr>
           </thead>
           <tbody>
-            {taskList.map((task) => (
+          {taskList.map((task) => (
               <tr key={task.id}>
                 <td>{task.title}</td>
                 <td>{task.description}</td>
