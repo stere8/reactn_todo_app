@@ -31,49 +31,22 @@ function TaskList({ filters = {} }) {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    console.log('Filters changed:', filters);
+  }, [filters]);
+
   const filteredTasks = taskList.filter((task) => {
     const { userId, completed, startDate, endDate } = filters;
     return (
       (userId === "" || task.userId === parseInt(userId)) &&
-      (completed === undefined || task.completed === (completed === "true")) &&
-      (startDate === undefined ||
-        new Date(task.dueDate) >= new Date(startDate)) &&
-      (endDate === undefined || new Date(task.dueDate) <= new Date(endDate))
+      (completed === "" || task.completed === (completed === "true")) &&
+      (!startDate || new Date(task.dueDate) >= new Date(startDate)) &&
+      (!endDate || new Date(task.dueDate) <= new Date(endDate))
     );
   });
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-
-  if (filteredTasks.length === 0) return (
-  <Table striped bordered hover variant="dark">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Due Date</th>
-      <th>Completed</th>
-      <th>User</th>
-    </tr>
-  </thead>
-  <tbody>
-    {taskList.map((task) => (
-      <tr key={task.id}>
-        <td>{task.title}</td>
-        <td>{task.description}</td>
-        <td>
-          {task.dueDate
-            ? new Date(task.dueDate).toLocaleDateString()
-            : "No Due date"}
-        </td>
-        <td>{task.completed ? "Yes" : "No"}</td>
-        <td>
-          {userList.find((user) => user.id === task.userId)?.username}
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</Table>);
 
   return (
     <Table striped bordered hover variant="dark">
@@ -87,21 +60,27 @@ function TaskList({ filters = {} }) {
         </tr>
       </thead>
       <tbody>
-        {filteredTasks.map((task) => (
-          <tr key={task.id}>
-            <td>{task.title}</td>
-            <td>{task.description}</td>
-            <td>
-              {task.dueDate
-                ? new Date(task.dueDate).toLocaleDateString()
-                : "No Due date"}
-            </td>
-            <td>{task.completed ? "Yes" : "No"}</td>
-            <td>
-              {userList.find((user) => user.id === task.userId)?.username}
-            </td>
+        {filteredTasks.length === 0 ? (
+          <tr>
+            <td colSpan="5">No tasks to display</td>
           </tr>
-        ))}
+        ) : (
+          filteredTasks.map((task) => (
+            <tr key={task.id}>
+              <td>{task.title}</td>
+              <td>{task.description}</td>
+              <td>
+                {task.dueDate
+                  ? new Date(task.dueDate).toLocaleDateString()
+                  : "No Due date"}
+              </td>
+              <td>{task.completed ? "Yes" : "No"}</td>
+              <td>
+                {userList.find((user) => user.id === task.userId)?.username}
+              </td>
+            </tr>
+          ))
+        )}
       </tbody>
     </Table>
   );

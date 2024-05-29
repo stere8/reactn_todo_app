@@ -11,7 +11,6 @@ function TasksPage() {
   });
 
   const [userList, setUserList] = useState([]);
-  const [taskList, setTaskList] = useState([]);
 
   useEffect(() => {
     async function fetchUsers() {
@@ -23,17 +22,7 @@ function TasksPage() {
       }
     }
 
-    async function fetchTasks() {
-      try {
-        const tasksResponse = await axios.get("https://localhost:7035/api/Tasks");
-        setTaskList(tasksResponse.data);
-      } catch (error) {
-        console.error('Error fetching tasks:', error);
-      }
-    }
-
     fetchUsers();
-    fetchTasks();
   }, []);
 
   const handleFilterChange = (e) => {
@@ -42,7 +31,6 @@ function TasksPage() {
       ...filters,
       [name]: value
     });
-    console.log(filters)
   };
 
   const handleResetFilters = () => {
@@ -53,25 +41,6 @@ function TasksPage() {
       endDate: ""
     });
   };
-
-  const filteredTasks = taskList.filter(task => {
-    if (filters.userId && task.userId !== parseInt(filters.userId)) {
-      return false;
-    }
-    if (filters.completed !== "") {
-      const isCompleted = filters.completed === "true";
-      if (task.completed !== isCompleted) {
-        return false;
-      }
-    }
-    if (filters.startDate && new Date(task.startDate) < new Date(filters.startDate)) {
-      return false;
-    }
-    if (filters.endDate && new Date(task.endDate) > new Date(filters.endDate)) {
-      return false;
-    }
-    return true;
-  });
 
   return (
     <div>
