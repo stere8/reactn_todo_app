@@ -42,6 +42,7 @@ function TasksPage() {
       ...filters,
       [name]: value
     });
+    console.log(filters)
   };
 
   const handleResetFilters = () => {

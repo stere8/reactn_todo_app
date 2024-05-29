@@ -45,7 +45,35 @@ function TaskList({ filters = {} }) {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  if (filteredTasks.length === 0) return <div>No tasks available</div>;
+  if (filteredTasks.length === 0) return (
+  <Table striped bordered hover variant="dark">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Due Date</th>
+      <th>Completed</th>
+      <th>User</th>
+    </tr>
+  </thead>
+  <tbody>
+    {taskList.map((task) => (
+      <tr key={task.id}>
+        <td>{task.title}</td>
+        <td>{task.description}</td>
+        <td>
+          {task.dueDate
+            ? new Date(task.dueDate).toLocaleDateString()
+            : "No Due date"}
+        </td>
+        <td>{task.completed ? "Yes" : "No"}</td>
+        <td>
+          {userList.find((user) => user.id === task.userId)?.username}
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</Table>);
 
   return (
     <Table striped bordered hover variant="dark">
