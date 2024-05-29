@@ -13,7 +13,13 @@ function TasksPage() {
   const [tasks, setTasks] = useState([]);
   const [users, setUsers] = useState([]);
   const [selectedTask, setSelectedTask] = useState(null);
-  const [form, setForm] = useState({ title: '', description: '', dueDate: '', completed: false, userId: '' });
+  const [form, setForm] = useState({ 
+    title: '', 
+    description: '', 
+    dueDate: new Date().toISOString().split('T')[0], 
+    completed: false, 
+    userId: '' 
+  });
 
   useEffect(() => {
     fetchTasks();
@@ -50,7 +56,7 @@ function TasksPage() {
     } else {
       await axios.post("https://localhost:7035/api/Tasks", form);
     }
-    setForm({ title: '', description: '', dueDate: '', completed: false, userId: '' });
+    setForm({ title: '', description: '', dueDate: new Date().toISOString().split('T')[0], completed: false, userId: '' });
     setSelectedTask(null);
     fetchTasks();
   };
@@ -60,7 +66,7 @@ function TasksPage() {
     setForm({
       title: task.title,
       description: task.description,
-      dueDate: task.dueDate,
+      dueDate: task.dueDate ? new Date(task.dueDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
       completed: task.completed,
       userId: task.userId,
     });
