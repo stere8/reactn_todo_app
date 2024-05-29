@@ -103,7 +103,7 @@ function TasksPage() {
         </label>
         <button onClick={handleResetFilters}>Reset Filters</button>
       </div>
-      <TaskList tasks={filteredTasks} />
+      <TaskList filters={filters} />
     </div>
   );
 }
