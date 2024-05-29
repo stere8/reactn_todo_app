@@ -81,11 +81,13 @@ namespace TaskManagment.Server.Controllers
 
         // PUT: api/Users/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutUser(int id, LoginUserDto loginUserDto)
         {
             try
             {
                 _logger.LogInformation("Updating user with ID {UserId}...", id);
+
+                var user = await _context.Users.FindAsync(id);
 
                 if (id != user.Id)
                 {
@@ -93,12 +95,19 @@ namespace TaskManagment.Server.Controllers
                     return BadRequest("Invalid ID provided.");
                 }
 
-                _context.Entry(user).State = EntityState.Modified;
+                if (VerifyPassword(loginUserDto.Password, user.PasswordHash))
+                {
+                    _context.Entry(user).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
+                    _logger.LogInformation("User with ID {UserId} updated successfully.", id);
+                    return NoContent();
+                }
+                else
+                {
+                    _logger.LogWarning("Invalid password provided for user with ID {UserId}.", id);
+                    return BadRequest("Invalid password provided.");
+                }
 
-                await _context.SaveChangesAsync();
-
-                _logger.LogInformation("User with ID {UserId} updated successfully.", id);
-                return NoContent();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -119,26 +128,6 @@ namespace TaskManagment.Server.Controllers
             }
         }
 
-        // POST: api/Users
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
-        {
-            try
-            {
-                _logger.LogInformation("Creating a new user...");
-
-                _context.Users.Add(user);
-                await _context.SaveChangesAsync();
-
-                _logger.LogInformation("User created successfully.");
-                return CreatedAtAction("GetUser", new { id = user.Id }, user);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while creating the user.");
-                return StatusCode(500, "An error occurred while creating user.");
-            }
-        }
 
         // DELETE: api/Users/{id}
         [HttpDelete("{id}")]
@@ -191,7 +180,7 @@ namespace TaskManagment.Server.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while registering the user.");
-                return StatusCode(500, "An error occurred while registering user.");
+                return StatusCode(500, $"An error occurred while registering user.");
             }
         }
 

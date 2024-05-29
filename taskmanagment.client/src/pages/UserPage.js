@@ -4,7 +4,7 @@ import axios from 'axios';
 function UsersPage() {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [form, setForm] = useState({ username: '', email: '' });
+  const [form, setForm] = useState({ username: '', email: '', password: '', repeatPassword: '' });
 
   useEffect(() => {
     fetchUsers();
@@ -26,19 +26,28 @@ function UsersPage() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (selectedUser) {
-      await axios.put(`https://localhost:7035/api/Users/${selectedUser.id}`, form);
-    } else {
-      await axios.post("https://localhost:7035/api/Users", form);
+    if (form.password !== form.repeatPassword) {
+      alert("Passwords do not match!");
+      return;
     }
-    setForm({ username: '', email: '' });
+    const userPayload = {
+      username: form.username,
+      email: form.email,
+      password: form.password
+    };
+    if (selectedUser) {
+      await axios.put(`https://localhost:7035/api/Users/${selectedUser.id}`, userPayload);
+    } else {
+      await axios.post("https://localhost:7035/api/Users/register", userPayload);
+    }
+    setForm({ username: '', email: '', password: '', repeatPassword: '' });
     setSelectedUser(null);
     fetchUsers();
   };
 
   const handleEdit = (user) => {
     setSelectedUser(user);
-    setForm({ username: user.username, email: user.email });
+    setForm({ username: user.username, email: user.email, password: '', repeatPassword: '' });
   };
 
   const handleDelete = async (userId) => {
@@ -73,6 +82,20 @@ function UsersPage() {
           value={form.email}
           onChange={handleInputChange}
           placeholder="Email"
+        />
+        <input
+          type="password"
+          name="password"
+          value={form.password}
+          onChange={handleInputChange}
+          placeholder="Password"
+        />
+        <input
+          type="password"
+          name="repeatPassword"
+          value={form.repeatPassword}
+          onChange={handleInputChange}
+          placeholder="Repeat Password"
         />
         <button type="submit">{selectedUser ? 'Update' : 'Add'} User</button>
       </form>
