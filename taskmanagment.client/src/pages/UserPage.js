@@ -49,6 +49,16 @@ function UsersPage() {
   return (
     <div>
       <h2>Users</h2>
+
+      <ul>
+        {users.map(user => (
+          <li key={user.id}>
+            {user.username} ({user.email})
+            <button onClick={() => handleEdit(user)}>Edit</button>
+            <button onClick={() => handleDelete(user.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
       <form onSubmit={handleFormSubmit}>
         <input
           type="text"
@@ -66,15 +76,6 @@ function UsersPage() {
         />
         <button type="submit">{selectedUser ? 'Update' : 'Add'} User</button>
       </form>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>
-            {user.username} ({user.email})
-            <button onClick={() => handleEdit(user)}>Edit</button>
-            <button onClick={() => handleDelete(user.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

@@ -135,6 +135,8 @@ function TasksPage() {
         </label>
         <button onClick={handleResetFilters}>Reset Filters</button>
       </div>
+
+      <TaskList filters={filters} tasks={filteredTasks} users={users} onEdit={handleEdit} onDelete={handleDelete} />
       <form onSubmit={handleFormSubmit}>
         <input
           type="text"
@@ -176,7 +178,6 @@ function TasksPage() {
         </label>
         <button type="submit">{selectedTask ? 'Update' : 'Add'} Task</button>
       </form>
-      <TaskList filters={filters} tasks={filteredTasks} users={users} onEdit={handleEdit} onDelete={handleDelete} />
     </div>
   );
 }
