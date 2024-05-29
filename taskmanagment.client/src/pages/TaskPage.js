@@ -3,11 +3,11 @@ import TaskList from '../components/TaskList';
 import axios from 'axios';
 
 function TasksPage() {
-  const [filters, setFilters] = useState({ 
+  const [filters, setFilters] = useState({
     userId: "",
     completed: "",
-    startDate: null,
-    endDate: null
+    startDate: "",
+    endDate: ""
   });
 
   const [userList, setUserList] = useState([]);
@@ -22,7 +22,7 @@ function TasksPage() {
         console.error('Error fetching users:', error);
       }
     }
-    
+
     async function fetchTasks() {
       try {
         const tasksResponse = await axios.get("https://localhost:7035/api/Tasks");
@@ -48,8 +48,8 @@ function TasksPage() {
     setFilters({
       userId: "",
       completed: "",
-      startDate: null,
-      endDate: null
+      startDate: "",
+      endDate: ""
     });
   };
 
@@ -58,17 +58,15 @@ function TasksPage() {
       return false;
     }
     if (filters.completed !== "") {
-      if (filters.completed === "true" && !task.completed) {
-        return false;
-      }
-      if (filters.completed === "false" && task.completed) {
+      const isCompleted = filters.completed === "true";
+      if (task.completed !== isCompleted) {
         return false;
       }
     }
-    if (filters.startDate && task.startDate < filters.startDate) {
+    if (filters.startDate && new Date(task.startDate) < new Date(filters.startDate)) {
       return false;
     }
-    if (filters.endDate && task.endDate > filters.endDate) {
+    if (filters.endDate && new Date(task.endDate) > new Date(filters.endDate)) {
       return false;
     }
     return true;
@@ -83,7 +81,7 @@ function TasksPage() {
           <select name="userId" value={filters.userId} onChange={handleFilterChange}>
             <option value="">All</option>
             {userList.map(user => (
-              <option key={user.id} value={user.id}>{user.name}</option>
+              <option key={user.id} value={user.id}>{user.username}</option>
             ))}
           </select>
         </label>
@@ -97,15 +95,15 @@ function TasksPage() {
         </label>
         <label>
           Start Date:
-          <input type="date" name="startDate" value={filters.startDate || ''} onChange={handleFilterChange} />
+          <input type="date" name="startDate" value={filters.startDate} onChange={handleFilterChange} />
         </label>
         <label>
           End Date:
-          <input type="date" name="endDate" value={filters.endDate || ''} onChange={handleFilterChange} />
+          <input type="date" name="endDate" value={filters.endDate} onChange={handleFilterChange} />
         </label>
         <button onClick={handleResetFilters}>Reset Filters</button>
       </div>
-      <TaskList filters={filteredTasks} />
+      <TaskList tasks={filteredTasks} />
     </div>
   );
 }
