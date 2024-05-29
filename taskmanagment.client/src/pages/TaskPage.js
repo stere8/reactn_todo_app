@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TaskList from '../components/TaskList';
-import axios from 'axios'; // Assuming you're using axios for HTTP requests
+import axios from 'axios';
 
 function TasksPage() {
   const [filters, setFilters] = useState({ 
@@ -11,21 +11,29 @@ function TasksPage() {
   });
 
   const [userList, setUserList] = useState([]);
-  
-  // Fetch users data from the API
+  const [taskList, setTaskList] = useState([]);
+
   useEffect(() => {
     async function fetchUsers() {
       try {
-        const usersResponse = await fetch("https://localhost:7035/api/Users");
-        const dataUsers = await usersResponse.json();
-
-        setUserList(dataUsers);
+        const usersResponse = await axios.get("https://localhost:7035/api/Users");
+        setUserList(usersResponse.data);
       } catch (error) {
         console.error('Error fetching users:', error);
       }
     }
     
+    async function fetchTasks() {
+      try {
+        const tasksResponse = await axios.get("https://localhost:7035/api/Tasks");
+        setTaskList(tasksResponse.data);
+      } catch (error) {
+        console.error('Error fetching tasks:', error);
+      }
+    }
+
     fetchUsers();
+    fetchTasks();
   }, []);
 
   const handleFilterChange = (e) => {
@@ -38,45 +46,39 @@ function TasksPage() {
 
   const handleResetFilters = () => {
     setFilters({
-      userId: "", // Remove user filter
-      completed: "", // Reset completed filter
-      startDate: null, // Reset start date
-      endDate: null // Reset end date
+      userId: "",
+      completed: "",
+      startDate: null,
+      endDate: null
     });
   };
 
-  const filteredTasks = () => {
-    // Assuming taskList is your tasks data array
-    return filters.filter(task => {
-      if (filters.userId && task.userId !== parseInt(filters.userId)) {
+  const filteredTasks = taskList.filter(task => {
+    if (filters.userId && task.userId !== parseInt(filters.userId)) {
+      return false;
+    }
+    if (filters.completed !== "") {
+      if (filters.completed === "true" && !task.completed) {
         return false;
       }
-      if (filters.completed !== "") {
-        if (filters.completed === "true" && !task.completed) {
-          return false;
-        }
-        if (filters.completed === "false" && task.completed) {
-          return false;
-        }
-      }
-      if (filters.startDate && task.startDate < filters.startDate) {
+      if (filters.completed === "false" && task.completed) {
         return false;
       }
-      if (filters.endDate && task.endDate > filters.endDate) {
-        return false;
-      }
-      return true;
-    });
-  };
-  
-  
-  
+    }
+    if (filters.startDate && task.startDate < filters.startDate) {
+      return false;
+    }
+    if (filters.endDate && task.endDate > filters.endDate) {
+      return false;
+    }
+    return true;
+  });
 
   return (
     <div>
       <h2>Tasks</h2>
       <div>
-        { <label>
+        <label>
           User ID:
           <select name="userId" value={filters.userId} onChange={handleFilterChange}>
             <option value="">All</option>
@@ -84,7 +86,7 @@ function TasksPage() {
               <option key={user.id} value={user.id}>{user.name}</option>
             ))}
           </select>
-        </label> }
+        </label>
         <label>
           Completed:
           <select name="completed" value={filters.completed} onChange={handleFilterChange}>
@@ -103,7 +105,7 @@ function TasksPage() {
         </label>
         <button onClick={handleResetFilters}>Reset Filters</button>
       </div>
-      <TaskList filters={filteredTasks()} />
+      <TaskList filters={filteredTasks} />
     </div>
   );
 }
