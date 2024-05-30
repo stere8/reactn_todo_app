@@ -1,10 +1,17 @@
+// taskmanagment.client/src/pages/UserPage.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import UserList from '../components/UsersList';
 
 function UsersPage() {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [form, setForm] = useState({ username: '', email: '', password: '', repeatPassword: '' });
+  const [form, setForm] = useState({
+    username: '',
+    email: '',
+    password: '',
+    repeatPassword: ''
+  });
 
   useEffect(() => {
     fetchUsers();
@@ -26,19 +33,10 @@ function UsersPage() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (form.password !== form.repeatPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
-    const userPayload = {
-      username: form.username,
-      email: form.email,
-      password: form.password
-    };
     if (selectedUser) {
-      await axios.put(`https://localhost:7035/api/Users/${selectedUser.id}`, userPayload);
+      await axios.put(`https://localhost:7035/api/Users/${selectedUser.id}`, form);
     } else {
-      await axios.post("https://localhost:7035/api/Users/register", userPayload);
+      await axios.post("https://localhost:7035/api/Users", form);
     }
     setForm({ username: '', email: '', password: '', repeatPassword: '' });
     setSelectedUser(null);
@@ -47,7 +45,12 @@ function UsersPage() {
 
   const handleEdit = (user) => {
     setSelectedUser(user);
-    setForm({ username: user.username, email: user.email, password: '', repeatPassword: '' });
+    setForm({
+      username: user.username,
+      email: user.email,
+      password: '',
+      repeatPassword: ''
+    });
   };
 
   const handleDelete = async (userId) => {
@@ -58,16 +61,7 @@ function UsersPage() {
   return (
     <div>
       <h2>Users</h2>
-
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>
-            {user.username} ({user.email})
-            <button onClick={() => handleEdit(user)}>Edit</button>
-            <button onClick={() => handleDelete(user.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      <UserList editable={true} onEdit={handleEdit} onDelete={handleDelete} />
       <form onSubmit={handleFormSubmit}>
         <input
           type="text"

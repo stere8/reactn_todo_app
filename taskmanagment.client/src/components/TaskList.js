@@ -1,7 +1,8 @@
+// taskmanagment.client/src/components/TaskList.js
 import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap"; // Import Table component from Bootstrap
 
-function TaskList({ filters = {} }) {
+function TaskList({ filters = {}, editable = false, onEdit, onDelete }) {
   const [taskList, setTaskList] = useState([]);
   const [userList, setUserList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +13,6 @@ function TaskList({ filters = {} }) {
       try {
         const usersResponse = await fetch("https://localhost:7035/api/Users");
         const tasksResponse = await fetch("https://localhost:7035/api/Tasks");
-        console.log(filters)
         if (!usersResponse.ok) {
           throw new Error(`HTTP error! status: ${usersResponse.status}`);
         }
@@ -46,36 +46,6 @@ function TaskList({ filters = {} }) {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  if (filteredTasks.length === 0) return (
-  <Table striped bordered hover variant="dark">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Due Date</th>
-      <th>Completed</th>
-      <th>User</th>
-    </tr>
-  </thead>
-  <tbody>
-    {taskList.map((task) => (
-      <tr key={task.id}>
-        <td>{task.title}</td>
-        <td>{task.description}</td>
-        <td>
-          {task.dueDate
-            ? new Date(task.dueDate).toLocaleDateString()
-            : "No Due date"}
-        </td>
-        <td>{task.completed ? "Yes" : "No"}</td>
-        <td>
-          {userList.find((user) => user.id === task.userId)?.username}
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</Table>);
-
   return (
     <Table striped bordered hover variant="dark">
       <thead>
@@ -85,6 +55,7 @@ function TaskList({ filters = {} }) {
           <th>Due Date</th>
           <th>Completed</th>
           <th>User</th>
+          {editable && <th>Actions</th>}
         </tr>
       </thead>
       <tbody>
@@ -101,6 +72,12 @@ function TaskList({ filters = {} }) {
             <td>
               {userList.find((user) => user.id === task.userId)?.username}
             </td>
+            {editable && (
+              <td>
+                <button onClick={() => onEdit(task)}>Edit</button>
+                <button onClick={() => onDelete(task.id)}>Delete</button>
+              </td>
+            )}
           </tr>
         ))}
       </tbody>

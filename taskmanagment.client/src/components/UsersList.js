@@ -1,7 +1,8 @@
+// taskmanagment.client/src/components/UsersList.js
 import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap"; // Import Table component from Bootstrap
 
-function UserList({ onViewTasks }) {
+function UserList({ onViewTasks, editable = false, onEdit, onDelete }) {
   const [userList, setUserList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -51,6 +52,12 @@ function UserList({ onViewTasks }) {
                   >
                     View Tasks
                   </button>
+                  {editable && (
+                    <>
+                      <button onClick={() => onEdit(user)}>Edit</button>
+                      <button onClick={() => onDelete(user.id)}>Delete</button>
+                    </>
+                  )}
                 </td>
               </tr>
             ))}

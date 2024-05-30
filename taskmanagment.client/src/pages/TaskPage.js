@@ -1,3 +1,4 @@
+// taskmanagment.client/src/pages/TaskPage.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TaskList from '../components/TaskList';
@@ -142,7 +143,7 @@ function TasksPage() {
         <button onClick={handleResetFilters}>Reset Filters</button>
       </div>
 
-      <TaskList filters={filters} tasks={filteredTasks} users={users} onEdit={handleEdit} onDelete={handleDelete} />
+      <TaskList filters={filters} editable={true} onEdit={handleEdit} onDelete={handleDelete} />
       <form onSubmit={handleFormSubmit}>
         <input
           type="text"
