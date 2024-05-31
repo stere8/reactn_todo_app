@@ -21,30 +21,60 @@ function TaskList({ filters, editable = false, onEdit, onDelete }) {
 
         const dataUsers = usersResponse.data.$values || [];
         const dataTasks = tasksResponse.data.$values || [];
+        console.log("dataTasks:", dataTasks);
+        console.log("dataUsers:", dataUsers);
 
         setUserList(Array.isArray(dataUsers) ? dataUsers : []);
         setTaskList(Array.isArray(dataTasks) ? dataTasks : []);
 
-        // Define a single filter function combining all conditions
-        const filterTasks = (tasks, filters) => {
-          return tasks.filter(
-            (item) =>
-              (!filters.userId || item.id === filters.userId) && // Use id for task filtering
-              (!filters.endDate ||
-                new Date(item.dueDate) <= new Date(filters.endDate)) &&
-              (!filters.startDate ||
-                new Date(item.dueDate) >= new Date(filters.startDate)) &&
-              (filters.completed === undefined ||
-                item.completed === filters.completed)
-          );
-        };
+        const filterByUserId = (userId) => (item) =>
+          !userId || item.userId === userId;
+        const filterByEndDate = (endDate) => (item) =>
+          !endDate || new Date(item.dueDate) <= new Date(endDate);
+        const filterByStartDate = (startDate) => (item) =>
+          !startDate || new Date(item.dueDate) >= new Date(startDate);
+        const filterByCompleted = (completed) => (item) =>
+          completed === undefined || item.completed === completed;
 
-        // Await for taskList to be populated before filtering
-        const tasks = await taskList;
-        console.log(tasks);
-        console.log(filters);
-        const filteredTasks = filterTasks(tasks, filters);
-        console.log(filteredTasks);
+        let filteredTasks = await taskList;
+
+        console.log('filteredTasks in the begining',filteredTasks)
+        
+        if (filters.userId !== "") {
+          filteredTasks = filteredTasks.filter(filterByUserId(filters.userId));
+          console.log(`filteredTasks after ID ${filters.userId} : ${filteredTasks}`);
+        } else {
+          console.log("Pass userId");
+        }
+        if (filters.endDate !== "") {
+          filteredTasks = filteredTasks.filter(
+            filterByEndDate(filters.endDate)
+          );
+          console.log(`filteredTasks after ID ${filters.endDate} : ${filteredTasks}`);
+        } else {
+          console.log("Pass endDate");
+        }
+        if (filters.startDate !== "") {
+          filteredTasks = filteredTasks.filter(
+            filterByStartDate(filters.startDate)
+          );
+          console.log(`filteredTasks after ID ${filters.startDate} : ${filteredTasks}`);
+        } else {
+          console.log("Pass startDate");
+        }
+        if (filters.completed !== "") {
+          filteredTasks = filteredTasks.filter(
+            filterByCompleted(filters.completed)
+          );
+          console.log(`filteredTasks after ID ${filters.completed} : ${filteredTasks}`);
+        } else {
+          console.log("Pass completed");
+        }
+
+        console.log("taskList", taskList);
+        console.log("filters", filters);
+        console.log("filteredTasks", filteredTasks);
+
         setFilteredTasks(filteredTasks);
       } catch (error) {
         console.error("Failed to fetch data:", error);
@@ -53,9 +83,8 @@ function TaskList({ filters, editable = false, onEdit, onDelete }) {
         setLoading(false);
       }
     };
-
     fetchData();
-  }, [filters]); // Re-run only when filters change
+  }, [filters]);
 
   useEffect(() => {
     console.log("taskList updated:", taskList);
@@ -72,13 +101,7 @@ function TaskList({ filters, editable = false, onEdit, onDelete }) {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  if (
-    filteredTasks.length === 0 &&
-    filters.userId === "" &&
-    filters.endDate === "" &&
-    filters.startDate === "" &&
-    filters.completed === ""
-  )
+  if (filteredTasks.length === 0 )
     return (
       <Table striped bordered hover variant="dark">
         <thead>
