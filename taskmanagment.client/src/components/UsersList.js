@@ -1,8 +1,9 @@
 // taskmanagment.client/src/components/UsersList.js
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap"; // Import Table component from Bootstrap
 
-function UserList({ onViewTasks, editable = false, onEdit, onDelete }) {
+function UserList({ onViewTasks, editable = false, onEdit, onDelete, onHomePage = false }) {
   const [userList, setUserList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -10,11 +11,10 @@ function UserList({ onViewTasks, editable = false, onEdit, onDelete }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const users = await fetch("https://localhost:7035/api/Users");
-        if (!users.ok) {
-          throw new Error(`HTTP error! status: ${users.status}`);
-        }
-        const dataUsers = await users.json();
+        const usersResponse = await axios.get(
+          "https://localhost:7035/api/Users"
+        );     
+        const dataUsers = usersResponse.data.$values || [];
         setUserList(dataUsers);
       } catch (error) {
         setError(error.message);
@@ -37,7 +37,7 @@ function UserList({ onViewTasks, editable = false, onEdit, onDelete }) {
             <tr>
               <th scope="col">Username</th>
               <th scope="col">Email</th>
-              <th scope="col">Actions</th>
+              {editable && <th>Actions</th>}
             </tr>
           </thead>
           <tbody>
@@ -46,12 +46,13 @@ function UserList({ onViewTasks, editable = false, onEdit, onDelete }) {
                 <td scope="row">{user.username}</td>
                 <td>{user.email}</td>
                 <td>
-                  <button
+                  
+                  {onHomePage && <button
                     className="btn btn-primary btn-sm"
                     onClick={() => onViewTasks(user.id)}
                   >
                     View Tasks
-                  </button>
+                  </button>}
                   {editable && (
                     <>
                       <button onClick={() => onEdit(user)}>Edit</button>
