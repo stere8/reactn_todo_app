@@ -8,14 +8,29 @@ function Home() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setFilters({
+      userId: "",
+      completed: "",
+      startDate: "",
+      endDate: "",
+    });
   }, []);
 
   const handleViewTasks = (userId) => {
-    setFilters({ userId });
-  };
+    setFilters({
+      userId: userId,
+      completed: "",
+      startDate: "",
+      endDate: "",
+    });;  };
 
   const handleViewAll = () => {
-    setFilters({});
+    setFilters({
+      userId: "",
+      completed: "",
+      startDate: "",
+      endDate: "",
+    });;
   };
 
   if (error) return <div>Error: {error}</div>;
@@ -25,7 +40,7 @@ function Home() {
       <h1>Welcome to the Task Management App</h1>
       <button onClick={handleViewAll}>View All Tasks</button>
       <TaskList filters={filters} editable={false} />
-      <UserList onHomePage= {true}/>
+      <UserList onViewTasks={handleViewTasks} onHomePage= {true}/>
     </div>
   );
 }

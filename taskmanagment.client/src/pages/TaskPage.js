@@ -55,6 +55,7 @@ function TasksPage() {
     e.preventDefault();
     try {
       if (selectedTask) {
+        console.log(form)
         await axios.put(
           `https://localhost:7035/api/Tasks/${selectedTask.id}`,
           form
@@ -79,6 +80,7 @@ function TasksPage() {
   const handleEdit = (task) => {
     setSelectedTask(task);
     setForm({
+      id: task.id,
       title: task.title,
       description: task.description,
       dueDate: task.dueDate
@@ -101,7 +103,7 @@ function TasksPage() {
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     setFilters({ ...filters, [name]: value });
-    console.log('Filters', filters)
+    console.log("Filters", filters);
   };
 
   const handleResetFilters = () => {
@@ -121,9 +123,9 @@ function TasksPage() {
       completed: false,
       userId: "",
     });
+    setSelectedTask("");
   };
 
-  
   return (
     <div>
       <h2>Tasks</h2>
