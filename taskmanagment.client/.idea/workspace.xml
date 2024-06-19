@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59cb3bd4-5755-4fd8-ba22-26971747c2a2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../TaskManagment.Server/.vs/ProjectEvaluation/taskmanagment.server.metadata.v8.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../TaskManagment.Server/.vs/ProjectEvaluation/taskmanagment.server.metadata.v8.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TaskManagment.Server/.vs/ProjectEvaluation/taskmanagment.server.projects.v8.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../TaskManagment.Server/.vs/ProjectEvaluation/taskmanagment.server.projects.v8.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TaskManagment.Server/.vs/ProjectEvaluation/taskmanagment.server.strings.v8.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../TaskManagment.Server/.vs/ProjectEvaluation/taskmanagment.server.strings.v8.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TaskManagment.Server/.vs/taskmanagment.server/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../TaskManagment.Server/.vs/taskmanagment.server/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TaskManagment.Server/.vs/taskmanagment.server/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../TaskManagment.Server/.vs/taskmanagment.server/v17/.futdcache.v2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TaskManagment.Server/.vs/taskmanagment.server/v17/DocumentLayout.json" beforeDir="false" afterPath="$PROJECT_DIR$/../TaskManagment.Server/.vs/taskmanagment.server/v17/DocumentLayout.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TaskManagment.Server/logs/log-20240529.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../TaskManagment.Server/logs/log-20240529.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TaskManagment.Server/Controllers/UsersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../TaskManagment.Server/Controllers/UsersController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TaskManagment.Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../TaskManagment.Server/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TaskManagment.Server/obj/Debug/net8.0/TaskManagment.Server.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../TaskManagment.Server/obj/Debug/net8.0/TaskManagment.Server.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TaskManagment.Server/obj/Debug/net8.0/TaskManagment.Server.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/../TaskManagment.Server/obj/Debug/net8.0/TaskManagment.Server.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TaskList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TaskList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UsersList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UsersList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/UserPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/UserPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +42,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/twizo/Documents/reactn_todo_app3/taskmanagment.client/package.json",
+    "last_opened_file_path": "C:/Users/twizo/Documents/aler-master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -81,6 +86,7 @@
       <updated>1717045223654</updated>
       <workItem from="1717045226909" duration="228000" />
       <workItem from="1717045848235" duration="3271000" />
+      <workItem from="1718248715317" duration="155000" />
     </task>
     <servers />
   </component>

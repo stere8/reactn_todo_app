@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|c:\\users\\twizo\\documents\\reactn_todo_app3\\taskmanagment.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|c:\\users\\twizo\\documents\\reactn_todo_app3\\taskmanagment.server\\data\\taskmanagmentservercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|solutionrelative:data\\taskmanagmentservercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|c:\\users\\twizo\\documents\\reactn_todo_app3\\taskmanagment.server\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|solutionrelative:controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|c:\\users\\twizo\\documents\\reactn_todo_app3\\taskmanagment.server\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|solutionrelative:models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|c:\\users\\twizo\\documents\\reactn_todo_app3\\taskmanagment.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|c:\\users\\twizo\\documents\\reactn_todo_app3\\taskmanagment.server\\dtos\\loginuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|solutionrelative:dtos\\loginuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|c:\\users\\twizo\\documents\\reactn_todo_app3\\taskmanagment.server\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|solutionrelative:models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|c:\\users\\twizo\\documents\\reactn_todo_app3\\taskmanagment.server\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,14 +39,6 @@
       "RelativeMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|solutionrelative:controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|c:\\users\\twizo\\documents\\reactn_todo_app3\\taskmanagment.server\\data\\taskmanagmentservercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|solutionrelative:data\\taskmanagmentservercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|c:\\users\\twizo\\documents\\reactn_todo_app3\\taskmanagment.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|c:\\users\\twizo\\documents\\reactn_todo_app3\\taskmanagment.server\\dtos\\addtaskdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7EF9C6F4-00CD-4023-BA2D-ADDB54E5048D}|taskmanagment.server.csproj|solutionrelative:dtos\\addtaskdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -46,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -73,75 +77,83 @@
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Task.cs",
-              "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Models\\Task.cs",
-              "RelativeDocumentMoniker": "Models\\Task.cs",
-              "ToolTip": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Models\\Task.cs",
-              "RelativeToolTip": "Models\\Task.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T20:03:39.396Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "TaskManagmentServerContext.cs",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Data\\TaskManagmentServerContext.cs",
               "RelativeDocumentMoniker": "Data\\TaskManagmentServerContext.cs",
               "ToolTip": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Data\\TaskManagmentServerContext.cs",
               "RelativeToolTip": "Data\\TaskManagmentServerContext.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABIAAAAjAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T18:57:08.1Z"
+              "WhenOpened": "2024-05-25T18:57:08.1Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
               "ToolTip": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAACEAAAAAAAAAAAAAACEAAAABAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAkAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-25T17:41:29.805Z"
+              "WhenOpened": "2024-05-25T17:41:29.805Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAAACQAAAABAAAA",
+              "ViewState": "AQIAACEAAAAAAAAAAAAAABIAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-25T17:35:13.465Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
               "ToolTip": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Controllers\\UsersController.cs",
               "RelativeToolTip": "Controllers\\UsersController.cs",
-              "ViewState": "AQIAAKoAAAAAAAAAAAAuwLYAAAAoAAAA",
+              "ViewState": "AQIAAMgAAAAAAAAAAAAAANoAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T17:00:32.234Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-25T17:00:32.234Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Models\\User.cs",
+              "ToolTip": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Models\\User.cs",
+              "RelativeToolTip": "Models\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-25T17:01:40.971Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "Task.cs",
+              "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Models\\Task.cs",
+              "RelativeDocumentMoniker": "Models\\Task.cs",
+              "ToolTip": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Models\\Task.cs",
+              "RelativeToolTip": "Models\\Task.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-25T20:03:39.396Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "WeatherForecastController.cs",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "Controllers\\WeatherForecastController.cs",
@@ -153,19 +165,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Models\\User.cs",
-              "RelativeDocumentMoniker": "Models\\User.cs",
-              "ToolTip": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Models\\User.cs",
-              "RelativeToolTip": "Models\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAYAAAA",
+              "DocumentIndex": 2,
+              "Title": "TasksController.cs",
+              "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Controllers\\TasksController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TasksController.cs",
+              "ToolTip": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Controllers\\TasksController.cs",
+              "RelativeToolTip": "Controllers\\TasksController.cs",
+              "ViewState": "AQIAACkAAAAAAAAAAAAuwEsAAABKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T17:01:40.971Z"
+              "WhenOpened": "2024-05-25T17:00:15.127Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
+              "Title": "LoginUserDto.cs",
+              "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\DTOs\\LoginUserDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\LoginUserDto.cs",
+              "ToolTip": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\DTOs\\LoginUserDto.cs",
+              "RelativeToolTip": "DTOs\\LoginUserDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-10T17:02:00.247Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "AddTaskDto.cs",
               "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\DTOs\\AddTaskDto.cs",
               "RelativeDocumentMoniker": "DTOs\\AddTaskDto.cs",
@@ -176,17 +201,8 @@
               "WhenOpened": "2024-05-25T17:00:37.593Z"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TasksController.cs",
-              "DocumentMoniker": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Controllers\\TasksController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TasksController.cs",
-              "ToolTip": "C:\\Users\\twizo\\Documents\\reactn_todo_app3\\taskmanagment.server\\Controllers\\TasksController.cs",
-              "RelativeToolTip": "Controllers\\TasksController.cs",
-              "ViewState": "AQIAAEEAAAAAAAAAAAAAAEoAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T17:00:15.127Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
             }
           ]
         }
