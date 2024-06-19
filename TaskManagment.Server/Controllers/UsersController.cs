@@ -166,7 +166,6 @@ namespace TaskManagment.Server.Controllers
                 _logger.LogInformation("Registering a new user...");
                 CreatePasswordHash(registerUserDto.Password, out string hashPasword);
 
-
                 var user = await _context.Users.AddAsync(new User()
                 {
                     Username = registerUserDto.Username,
