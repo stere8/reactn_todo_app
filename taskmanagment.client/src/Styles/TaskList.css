@@ -1,0 +1,19 @@
+.table-container {
+  margin: auto; /* Centering the table container */
+}
+
+.table-container .MuiTableCell-root {
+  cursor: pointer; /* Make the table cells clickable */
+}
+
+.table-container .completed {
+  background-color: lightgreen; /* Green background for completed tasks */
+}
+
+.table-container .not-completed {
+  background-color: lightcoral; /* Red background for incomplete overdue tasks */
+}
+
+.table-container .table-cell-actions {
+  white-space: nowrap; /* Prevent button wrapping */
+}

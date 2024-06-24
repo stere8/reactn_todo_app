@@ -28,6 +28,15 @@
   color: #61dafb;
 }
 
+.completed {
+    background-color: #c8e6c9; /* Light green */
+}
+
+.not-completed {
+    background-color: #ffcdd2; /* Light red */
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
