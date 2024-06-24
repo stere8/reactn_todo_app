@@ -1,21 +1,29 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar"; // Assuming 'your-navbar-library' is the library name
-import Home from "./pages/Home";
-import TaskPage from "./pages/TaskPage";
-import UserPage from "./pages/UserPage";
+import React from 'react';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {ThemeProvider} from '@mui/material/styles';
+import TaskPage from './pages/TaskPage';
+import TaskForm from './components/TaskForm'
+import UserPage from './pages/UserPage';
+import TaskView from './pages/TaskView';
+import NavBar from './components/NavBar';
+import Home from './pages/Home';
+import theme from './theme'; // Import your theme
 
 function App() {
-  return (
-    <div className="App">
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/tasks" element={<TaskPage />} />
-        <Route path="/users" element={<UserPage />} />
-      </Routes>
-    </div>
-  );
+    return (
+        <ThemeProvider theme={theme}>
+            <div className="App">
+                <NavBar/>
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/users" element={<UserPage/>}/>
+                    <Route path="/tasks" element={<TaskPage/>}/>
+                    <Route path="/tasks/add" element={<TaskForm/>}/>
+                    <Route path="/tasks/edit/:taskId" element={<TaskForm/>}/>
+                    <Route path="/tasks/:taskId" element={<TaskView/>}/> </Routes>
+            </div>
+        </ThemeProvider>
+    );
 }
 
 export default App;

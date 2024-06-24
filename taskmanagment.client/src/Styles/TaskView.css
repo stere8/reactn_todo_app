@@ -1,0 +1,23 @@
+.task-details {
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.task-details .status-completed {
+    color: green;
+    font-weight: bold;
+}
+
+.task-details .status-late {
+    color: red;
+    font-weight: bold;
+}
+
+.task-details .status-inprogress {
+    color: blue;
+    font-weight: bold;
+}
+
+.task-details .MuiButton-root {
+    margin-top: 10px;
+}
